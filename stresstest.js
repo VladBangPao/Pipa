@@ -43,25 +43,18 @@ class StressTest{
         
     }
     async orchastrate(){
-        const result = await this.hash_n_write()
+        this.hash_n_write()
         const result2 = await this.read_n_hash()
         this.validate()
     }
     hash_n_write(){
-        return new Promise(resolve=>{
-            for (var i=0; i<=5; i++){
-                var buff = this.random_buff()
-                var data = JSON.stringify(buff)
-                const hash = sha256(data).toString(CryptoJS.enc.Base64)
-                this.hash_table1[hash]=data
-                let writer = fs.createWriteStream(this.bowl_path, {flag:'aw'}) 
-                //console.log(buff)
-                writer.write(buff, foo =>{
-                    resolve()
-                })
-                
-            }
-        })
+        for (var i=0; i<=5; i++){
+            var buff = this.random_buff()
+            var data = JSON.stringify(buff)
+            const hash = sha256(data).toString(CryptoJS.enc.Base64)
+            this.hash_table1[hash]=data
+            fs.writeFileSync(this.bowl_path, data+'\n', {flag:'a', encoding:'utf-8'}) 
+        }
         
     }
     read_n_hash(){

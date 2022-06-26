@@ -10,7 +10,27 @@ class BowlShaft{
     }
   
     pull(){
-      //bowl_shaft is just a socket
+          //bowl_shaft is just a socket
+          const bowl_shaft = this.create_bowl_shaft()
+          //when the bowl shaft (socket) connection ends
+          bowl_shaft.on('end', () => {
+            console.log('bowl fell off');
+            process.exit();
+          });
+          setInterval(()=>{
+            fs.readFile(this.bowl_path, (err, data) => {
+              if(data){
+                //socket.write is already a stream, no need to worry
+                bowl_shaft.write(data, foo=>{
+                  fs.truncate(this.bowl_path, baz=>{})
+                });
+              }
+              if (err) throw err;
+            }); 
+          }, 500)
+    }
+  
+    create_bowl_shaft(){
       const bowl_shaft = net.createConnection(
         {
           host: this.pipa_host, 
@@ -20,30 +40,8 @@ class BowlShaft{
           console.log("Pipa bowl-shaft connected:",this.pipa_port)
         }
       );
-      //when the bowl shaft (socket) connection ends
-      bowl_shaft.on('end', () => {
-        console.log('bowl fell off');
-        process.exit();
-      });
-      fs.watchFile(
-        this.bowl_path, 
-        (curr, prev) => {
-          fs.readFile(this.bowl_path, (err, data) => {
-            if(data){
-              //socket.write is already a stream, no need to worry
-              bowl_shaft.write(data)
-            }
-
-            if (err) throw err;
-            console.log(data);
-          });
-
-            
-        }
-      );  
+      return bowl_shaft
     }
-  
-
   }
   
   export class Bowl {
@@ -58,7 +56,7 @@ class BowlShaft{
         fs.mkdirSync(path.dirname(bowl_path));
       }
       console.log("grabbing a bowl", bowl_path)
-      fs.writeFileSync(bowl_path, "", {flag:'w'})
+      fs.writeFileSync(bowl_path, "", {flag:'w', encoding:'utf-8'})
     }
     light_up(){
       //when you light up the bowl, the bowl shaft begins pulling from the bowl

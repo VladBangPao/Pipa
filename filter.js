@@ -13,6 +13,13 @@ class FilterShaft{
       return data;
     }
     pull(){
+        const server = this.create_server();
+        server.listen(this.pipa_port, () => {
+          console.log('Inhaling smoke on pipa-port:'+this.pipa_port);
+        });
+
+    } 
+    create_server(){
       const server = net.createServer(
         (pipa_socket)=>{
           pipa_socket.on('connection', () => {
@@ -22,14 +29,12 @@ class FilterShaft{
             console.log('bowl shaft dislodged');
           });
           pipa_socket.on('data', (smoke) =>{
-                this.filter._inhale(smoke)
+            this.filter._inhale(smoke)
           })
         }
       );
-      server.listen(this.pipa_port, () => {
-        console.log('Inhaling smoke on pipa-port:'+this.pipa_port);
-      });
-    } 
+      return server
+    }
   }
   
   export class Filter {
@@ -47,18 +52,22 @@ class FilterShaft{
       fs.writeFileSync(blow_path, "", {flag:'w'})
 
     }
-    _inhale(smoke){
+    async _inhale(smoke){
       //when you inhale, data comes through the socket, and you blow it into a path ending with a file
-      this.blow_to(this.blow_path, smoke)
+      const result = await this.blow_to(this.blow_path, smoke)
+      
     }
     inhale(){
       var filter_shaft = new FilterShaft(this, this.pipa_port)
       filter_shaft.pull()
     }
     blow_to(blow_path, smoke){
-      let writer = fs.createWriteStream(blow_path, {flag:'wa'}) 
       console.log(smoke)
-      writer.write(smoke+'\n')
-      
+      return new Promise(resolve=>{
+        fs.writeFile(blow_path, smoke+'\n', {flag:'a', encoding:'utf-8'}, foo =>{
+        }) 
+        resolve();
+      })
+
     }
   }
