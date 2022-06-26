@@ -49,7 +49,7 @@ class StressTest{
     }
     hash_n_write(){
         return new Promise(resolve=>{
-            for (var i=0; i<=10; i++){
+            for (var i=0; i<=5; i++){
                 var buff = this.random_buff()
                 var data = JSON.stringify(buff)
                 const hash = sha256(data).toString(CryptoJS.enc.Base64)
@@ -66,30 +66,28 @@ class StressTest{
     }
     read_n_hash(){
         return new Promise(resolve=>{
-            fs.watchFile(
-                this.bowl_path, 
-                (curr, prev) => {
+            setTimeout(()=>{
                 fs.readFile(this.bowl_path, (err, data) => {
-                    if(data){
                     //socket.write is already a stream, no need to worry
                     data = JSON.stringify(data)
                     const hash = sha256(data).toString(CryptoJS.enc.Base64)
                     this.hash_table2[hash]=data
-                    }
+                    
                     if (err) throw err;
-                    fs.unwatchFile(this.bowl_path)
                     resolve();
                 });
-                }
-            );  
-        });
+            }, 5000)
+        });  
+    
     }
     validate(){
-        for (const [key, value] of Object.entries(this.hash_table1)) {
-            if (!(key in this.hash_table2)){
-                console.log(this.hash_table2)
-                console.log("Error: hashtables do not match")
+        for (const [key1, value1] of Object.entries(this.hash_table1)) {
+            for (const [key2, value2] of Object.entries(this.hash_table2)){
+                console.log(key1, key2)
             }
+            // if (!(key in this.hash_table2)){
+            //     console.log("Error: hashtables do not match")
+            // }
         }
     }
 
