@@ -30,15 +30,16 @@ import * as fs from 'node:fs';
 import sha256 from 'crypto-js/sha256.js';
 import CryptoJS from 'crypto-js';
 import { open } from 'node:fs/promises';
+import { on } from 'node:events';
 //const stream = require('node:stream');
 
 //console.log("sending str to buffer.from(str)==>", str, Buffer.from(str))
 //console.log("writing buffer to bestie.bowl")
 class StressTest{
-    constructor(bowl_path){
+    constructor(smoke){
         this.hash_table1={}
         this.hash_table2={}
-        this.bowl_path = bowl_path
+        this.smoke = smoke
         this.orchastrate()
         
     }
@@ -53,23 +54,29 @@ class StressTest{
             var data = JSON.stringify(buff)
             const hash = sha256(data).toString(CryptoJS.enc.Base64)
             this.hash_table1[hash]=data
-            fs.writeFileSync(this.bowl_path, data+'\n', {flag:'a', encoding:'utf-8'}) 
+            fs.writeFileSync(this.smoke, data+'\n', {flag:'a', encoding:'utf-8'}) 
         }
         
     }
+    //TRY READING FROM A STREAM N NUMBER OF BITS AND TRUNCATE N NUMBER OF BITS
     read_n_hash(){
         return new Promise(resolve=>{
-            setTimeout(()=>{
-                fs.readFile(this.bowl_path, (err, data) => {
+            setInterval(()=>{
+                fs.readFile(this.smoke, (err, data) => {
                     //socket.write is already a stream, no need to worry
-                    data = JSON.stringify(data)
+                    data = JSON.parse(JSON.stringify(data))
                     const hash = sha256(data).toString(CryptoJS.enc.Base64)
                     this.hash_table2[hash]=data
+                    fs.stat(this.smoke, (err, stats)=>{
+                        if (stats.size==0){
+                            resolve()
+                        }
+                    })
                     
                     if (err) throw err;
                     resolve();
                 });
-            }, 5000)
+            }, 500)
         });  
     
     }
@@ -103,6 +110,6 @@ class StressTest{
     }
 }
 
-var st = new StressTest('./tmp/bestie.bowl')
+var st = new StressTest('./tmp/second_hand.smoke')
 
 
