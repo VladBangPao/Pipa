@@ -58,7 +58,7 @@ class FilterShaft{
     blow_to(blow_path, smoke){
       let writer = fs.createWriteStream(blow_path, {flag:'wa'}) 
       console.log(smoke)
-      writer.write(smoke)
+      writer.write(smoke+'\n')
       
     }
   }

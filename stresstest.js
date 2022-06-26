@@ -28,30 +28,69 @@
 
 import * as fs from 'node:fs';
 import sha256 from 'crypto-js/sha256.js';
+import CryptoJS from 'crypto-js';
 import { open } from 'node:fs/promises';
 //const stream = require('node:stream');
 
 //console.log("sending str to buffer.from(str)==>", str, Buffer.from(str))
 //console.log("writing buffer to bestie.bowl")
 class StressTest{
-    constructor(){
-        this.hash_table=this.hash_n_write()
+    constructor(bowl_path){
+        this.hash_table1={}
+        this.hash_table2={}
+        this.bowl_path = bowl_path
+        this.orchastrate()
+        
+    }
+    async orchastrate(){
+        const result = await this.hash_n_write()
+        const result2 = await this.read_n_hash()
+        this.validate()
     }
     hash_n_write(){
-        var str_hash={}
-        for (var i=0; i<=10; i++){
-            var buff = this.random_buff()
-            //console.log(buff)
-            var data = JSON.stringify(buff)
-            const hash = sha256(data)
-            str_hash[hash]=data
-            let writer = fs.createWriteStream('./tmp/bestie.bowl', {flag:'wa'}) 
-            writer.write(buff)
-            
-        }
+        return new Promise(resolve=>{
+            for (var i=0; i<=10; i++){
+                var buff = this.random_buff()
+                var data = JSON.stringify(buff)
+                const hash = sha256(data).toString(CryptoJS.enc.Base64)
+                this.hash_table1[hash]=data
+                let writer = fs.createWriteStream(this.bowl_path, {flag:'aw'}) 
+                //console.log(buff)
+                writer.write(buff, foo =>{
+                    resolve()
+                })
+                
+            }
+        })
+        
+    }
+    read_n_hash(){
+        return new Promise(resolve=>{
+            fs.watchFile(
+                this.bowl_path, 
+                (curr, prev) => {
+                fs.readFile(this.bowl_path, (err, data) => {
+                    if(data){
+                    //socket.write is already a stream, no need to worry
+                    data = JSON.stringify(data)
+                    const hash = sha256(data).toString(CryptoJS.enc.Base64)
+                    this.hash_table2[hash]=data
+                    }
+                    if (err) throw err;
+                    fs.unwatchFile(this.bowl_path)
+                    resolve();
+                });
+                }
+            );  
+        });
     }
     validate(){
-
+        for (const [key, value] of Object.entries(this.hash_table1)) {
+            if (!(key in this.hash_table2)){
+                console.log(this.hash_table2)
+                console.log("Error: hashtables do not match")
+            }
+        }
     }
 
     random_buff(){
@@ -73,17 +112,6 @@ class StressTest{
     }
 }
 
-var st = new StressTest()
-//console.log(st.hash_table)
-
-const fd = await open('./tmp/second_hand.smoke');
-// Create a stream from some character device.
-var read_stream = fd.createReadStream({encoding:'hex'});
-read_stream.on('open', (res)=>{
-    console.log(res)
-})
-read_stream.on('read', (data)=>{
-    console.log(data)
-})
+var st = new StressTest('./tmp/bestie.bowl')
 
 
