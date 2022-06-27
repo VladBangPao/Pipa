@@ -13,8 +13,10 @@ export class FilterServer {
     this.filterpath = './tmp/'+this.filtername
     this.mkdr()
     this.wstream = fs.createWriteStream(this.filterpath)
-
+    this.config_write_stream()
+    this.socket = null
     var server = net.createServer((socket)=>{
+      this.socket=socket
       this.config_socket(socket)
     })
 
@@ -26,43 +28,79 @@ export class FilterServer {
   config_write_stream(){
     this.wstream.on('close',()=>{
       console.log('write stream has closed')
+      this.wstream = fs.createWriteStream(this.filterpath)
+      this.config_write_stream()
     })
     this.wstream.on('open', ()=>{
       console.log('write stream has opened')
-
     })
     this.wstream.on('ready', ()=>{
       console.log('write stream is ready')
+      try{
+        var data = this.socket.read()
+        if (data !==null){
+          this.wstream.write(data)
+        }
+      }catch{
 
+      }
+      
     })
 
   }
 
 
-  config_socket(socket){
-    socket.allowHalfOpen=true
-    socket.on('close', (error)=>{
+  config_socket(){
+    this.socket.allowHalfOpen=true
+    this.socket.on('close', (error)=>{
       console.log('socket closed: ', error)
     });
-    socket.on('connect', (conn)=>{
+    this.socket.on('connect', (conn)=>{
+      try{
+        var data = this.socket.read()
+        if(data!==null){
+          this.wstream.write(data)
+
+        }
+      }catch{
+
+      }
       console.log('connection established:', conn)
     })
-    socket.on('drain', ()=>{
-      socket.resume()
+    this.socket.on('drain', ()=>{
+      try{
+        var data = this.socket.read()
+        if(data!==null){
+          this.wstream.write(data)
+
+        }
+      }catch{
+
+      }
+      this.socket.resume()
     })
-    socket.on('end', ()=>{
-      socket.resume()
+    this.socket.on('end', ()=>{
+
+      this.socket.resume()
     })
-    socket.on('error', (err)=>{
+    this.socket.on('error', (err)=>{
+
       console.log('Socket error:', err)
     })
-    socket.on('timeout', ()=>{
-      socket.resume()
+    this.socket.on('timeout', ()=>{
+      this.socket.resume()
     })
 
-    socket.on('data', (data)=>{
+    this.socket.on('data', (data)=>{
       console.log("recieving data:", data)
-      this.wstream.write(data)
+      try{
+        if(data!==null){
+          this.wstream.write(data)
+
+        }
+      }catch{
+
+      }
       console.log("number of bytes written thus far", this.wstream.bytesWritten)
     })
   }
