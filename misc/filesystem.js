@@ -10,8 +10,10 @@ import { truncate } from 'node:fs';
 
 //This returns an <fs.ReadStream> which inherits from Readable Streams objects
 //It has close, open, and ready events
-var filename = './testfile.something'
-var filename2 = './testfile2.something'
+
+//This is what we'll use if reading from a socket and writing to a file (now we need to reverse it by changing the file names)
+var filename2 = './testfile.something'
+var filename = './testfile2.something'
 var wstream = fs.createWriteStream(filename2, {flags:'a', start:0})
 var rstream = fs.createReadStream(filename, {flags:'r+', pos:0})
 var pstream = rstream.pipe(wstream, {end:false}, ()=>{})  
