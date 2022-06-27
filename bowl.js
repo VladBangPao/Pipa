@@ -1,7 +1,10 @@
-import * as net from 'node:net';
-import * as fs from "node:fs";
-import * as path from "node:path";
-import { existsSync } from 'fs';
+import { Socket} from 'node:net';
+import { dirname } from "node:path";
+import { existsSync, mkdirSync, writeFileSync, createReadStream, unlinkSync } from 'fs';
+import { v4 as uuidv4 } from 'uuid';
+import { LocalPipa } from "./localPipa.js"
+import { pipeline } from "node:stream";
+
 
 
 export class BowlClient {
@@ -10,34 +13,39 @@ export class BowlClient {
     this.bowlpath = './tmp/'+this.bowlname
     this.mkdr(this.bowlpath)
     this.sock = new Socket({allowHalfOpen:true, writable:true})
-    this.sock.connect({port:3000, host:'localhost', keepAlive:true})
+    this.sock.connect({port:port, host:host, keepAlive:true})
     setInterval(()=>{
-      //create a new file for local pipa to pipe to
-      //create local pipa object, and pipa the data to the tmp_uniqueId file from bowlpath
-      //then use stream(tmp_uniqueId). local pipa cleans after itself in bowlpath every iteration.
-
-    }, 2500)
+      var id = uuidv4()
+      var id_path = './tmp/'+id
+      writeFileSync(id_path, "", {flag:'a'})
+      new LocalPipa(this.bowlpath, id_path, ()=>{
+        this.stream(id_path)
+      })
+    }, 1000)
     
   }
 
   stream(source){
     pipeline(
-      fs.createReadStream(source),
+      createReadStream(source),
       this.sock,
       (err)=>{
           if (err){
               console.log('Pipeline failed', err)
+              
           }else{
               console.log('Pipeline succeeded');
+              unlinkSync(source)
           }
       }
     );
   }
-  mkdr(path){
-      if (!fs.existsSync(path.dirname(path))){
-        fs.mkdirSync(path.dirname(path));
+
+  mkdr(somepath){
+      if (!existsSync(dirname(somepath))){
+        mkdirSync(dirname(somepath));
       }
-      fs.writeFileSync(path, "", {flag:'a'})
+      writeFileSync(somepath, "", {flag:'a'})
   }
 
   

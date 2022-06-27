@@ -1,8 +1,8 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-class LocalPipa{
-constructor(f1, f2){
+export class LocalPipa{
+    constructor(f1, f2, callback){
         this.mkdir(f1)
         this.mkdir(f2)
         this.f1 = f1
@@ -25,6 +25,7 @@ constructor(f1, f2){
                 }
                 fs.close(fd)
                 this.counter=0
+                callback()
             });
         })
     }
@@ -37,5 +38,5 @@ constructor(f1, f2){
     }
 }
 //This would be used to keep the user source file clean and allow us to take our time processing the data
-new LocalPipa('./tmp/local.bowl', './tmp/local.filter')
+// new LocalPipa('./tmp/local.bowl', './tmp/local.filter')
 //107,374,182,400 bytes
