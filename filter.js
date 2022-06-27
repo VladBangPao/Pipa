@@ -27,85 +27,74 @@ export class FilterServer {
   }
   config_write_stream(){
     this.wstream.on('close',()=>{
-      console.log('write stream has closed')
       this.wstream = fs.createWriteStream(this.filterpath)
+      this.write('wstream.on.close.createWriteStream.config_write_stream()')
       this.config_write_stream()
     })
     this.wstream.on('open', ()=>{
-      console.log('write stream has opened')
+      this.write('wstream.on.open.write()')
     })
     this.wstream.on('ready', ()=>{
-      console.log('write stream is ready')
-      try{
-        var data = this.socket.read()
-        if (data !==null){
-          this.wstream.write(data)
-        }
-      }catch{
-
-      }
-      
+      this.write('wstream.on.ready.write()')
     })
-
   }
 
 
   config_socket(){
     this.socket.allowHalfOpen=true
     this.socket.on('close', (error)=>{
-      console.log('socket closed: ', error)
+      this.socket = net.createConnection({ host:this.host, port: this.port }, () => {
+        this.write('this.socket.on.close.createConnection.write.config_socket()')
+        this.config_socket()
+      });
     });
     this.socket.on('connect', (conn)=>{
-      try{
-        var data = this.socket.read()
-        if(data!==null){
-          this.wstream.write(data)
-
-        }
-      }catch{
-
-      }
-      console.log('connection established:', conn)
+      this.write('socket.on.connect.write()')
     })
     this.socket.on('drain', ()=>{
-      try{
-        var data = this.socket.read()
-        if(data!==null){
-          this.wstream.write(data)
-
-        }
-      }catch{
-
-      }
+      this.write('socket.on.drain.write.resume()')
       this.socket.resume()
     })
     this.socket.on('end', ()=>{
-
-      this.socket.resume()
+      this.socket = net.createConnection({ host:this.host, port: this.port }, () => {
+      this.write('this.socket.on.end.createConnection.write.config_socket()')
+      this.config_socket()
+      })
     })
     this.socket.on('error', (err)=>{
-
-      console.log('Socket error:', err)
+      this.socket = net.createConnection({ host:this.host, port: this.port }, () => {
+      this.write('this.socket.on.error.createConnection.write.config_socket()')
+      this.config_socket()
+      })
     })
     this.socket.on('timeout', ()=>{
-      this.socket.resume()
+      this.socket.close()
+      this.socket = net.createConnection({ host:this.host, port: this.port }, () => {
+      this.write('this.socket.on.timeout.close..createConnection.write.config_socket()')
+      this.config_socket()
+      })
     })
-
     this.socket.on('data', (data)=>{
-      console.log("recieving data:", data)
-      try{
-        if(data!==null){
-          this.wstream.write(data)
-
-        }
-      }catch{
-
-      }
+      this.write('this.socket.on.data.write()', data)
       console.log("number of bytes written thus far", this.wstream.bytesWritten)
     })
   }
-
-
+  write(message, data){
+    if(data){
+      this.wstream.write(data)
+    }else{
+      try{
+        var data = this.socket.read();
+        if(data !== null){
+          console.log(message);
+          this.wstream.write(data);
+        }
+      }catch{
+      }
+    }
+    
+  }
+  
   mkdr(){
     if (!fs.existsSync(path.dirname(this.filterpath))){
       fs.mkdirSync(path.dirname(this.filterpath));
