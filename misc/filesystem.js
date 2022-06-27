@@ -36,12 +36,3 @@ function pipa(filename, filename2){
         });
     })
 }
-
-
-
-
-
-  
-
-
-
