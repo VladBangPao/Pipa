@@ -13,13 +13,32 @@ export class FilterServer {
     this.filterpath = './tmp/'+this.filtername
     this.mkdr()
     this.wstream = fs.createWriteStream(this.filterpath)
+
     var server = net.createServer((socket)=>{
       this.config_socket(socket)
     })
+
     server.listen(this.port, ()=>{
       console.log("listening on port: ", this.port)
     })
+
   }
+  config_write_stream(){
+    this.wstream.on('close',()=>{
+      console.log('write stream has closed')
+    })
+    this.wstream.on('open', ()=>{
+      console.log('write stream has opened')
+
+    })
+    this.wstream.on('ready', ()=>{
+      console.log('write stream is ready')
+
+    })
+
+  }
+
+
   config_socket(socket){
     socket.allowHalfOpen=true
     socket.on('close', (error)=>{
@@ -31,19 +50,20 @@ export class FilterServer {
     socket.on('drain', ()=>{
       socket.resume()
     })
-    this.socket.on('end', ()=>{
-      this.socket.resume()
+    socket.on('end', ()=>{
+      socket.resume()
     })
-    this.socket.on('error', (err)=>{
+    socket.on('error', (err)=>{
       console.log('Socket error:', err)
     })
-    this.socket.on('timeout', ()=>{
-      this.socket.resume()
+    socket.on('timeout', ()=>{
+      socket.resume()
     })
 
     socket.on('data', (data)=>{
-      console.log(data)
+      console.log("recieving data:", data)
       this.wstream.write(data)
+      console.log("number of bytes written thus far", this.wstream.bytesWritten)
     })
   }
 

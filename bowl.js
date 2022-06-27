@@ -12,33 +12,46 @@ export class BowlClient {
     this.socket = net.createConnection({host:host, port:port})
     this.config_socket()
     this.rstream = fs.createReadStream(this.bowlpath)
+    this.config_read_stream()
+    this.file_watcher = fs.watch(this.bowlpath, {persistent:true})
+    this.config_fsWatcher()
+  }
 
-    // Event: 'close'
-    // Event: 'data'
-    // Event: 'end'
-    // Event: 'error'
-    // Event: 'pause'
-    // Event: 'readable'
-    // Event: 'resume'
+  config_fsWatcher(){
+    this.file_watcher.on('close',()=>{
+      this.file_watcher = fs.watch(this.bowlpath, {persistent:true})
+      this.file_watcher.ref() // precautionary
 
-    this.rstream.on('close', ()=>{
-      this.rstream.resume()
+    });
+    this.file_watcher.on('change', ()=>{
+      var data = this.rstream.read()
+      if (data != null){
+        this.socket.write(data, ()=>{})
+      }
+      this.file_watcher.ref() // precautionary
+    });
+    this.file_watcher.on('error', (eventType, filename)=>{
+      this.file_watcher = fs.watch(this.bowlpath, {persistent:true})
+      this.file_watcher.ref() // precautionary
+    });
+  }
+  config_read_stream(){
+    this.rstream.on('close',()=>{
+      console.log('read stream has closed')
+      this.rstream = fs.createReadStream(this.bowlpath)
+      this.config_read_stream()
     })
-    this.rstream.on('data', (data)=>{
-      this.socket.write(data, ()=>{})
+    this.rstream.on('open', ()=>{
+      console.log('read stream has opened')
     })
+    this.rstream.on('ready', ()=>{
+      console.log('read stream is ready')
+      var data = this.rstream.read()
+      if (data != null){
+        this.socket.write(data, ()=>{})
+      }
 
-    this.rstream.on('end', ()=>{
-      this.rstream.resume()
     })
-    this.rstream.on('error', ()=>{
-      this.rstream.resume()
-    })
-    this.rstream.on('pause', ()=>{
-      this.resume()
-    })
-
-
 
   }
   config_socket(){
