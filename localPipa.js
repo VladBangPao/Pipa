@@ -2,7 +2,8 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 
 export class LocalPipa{
-    constructor(f1, f2, callback){
+    constructor(f1, f2, callback, iterMode=true){
+        this.iterMode=iterMode
         this.mkdir(f1)
         this.mkdir(f2)
         this.f1 = f1
@@ -14,7 +15,12 @@ export class LocalPipa{
         this.wstream.on('data', (src)=>{
             this.wstream.start+=1
             this.rstream.pos+=1
-            this.counter+=1
+            if ((this.counter>=10000)&&(this.iterMode)){
+                this.wstream.close()
+            }else{
+                this.counter+=1
+            }
+
         })
         this.rstream.on('close', ()=>{
             //clean up read file
@@ -25,8 +31,9 @@ export class LocalPipa{
                 }
                 fs.close(fd)
                 this.counter=0
-                callback()
+                
             });
+            callback()
         })
     }
     mkdir(f){

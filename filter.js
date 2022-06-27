@@ -49,6 +49,7 @@ export class FilterServer {
       });
     });
     this.socket.on('connect', (conn)=>{
+      this.mkdr()
       this.write('socket.on.connect.write()')
     })
     this.socket.on('drain', ()=>{

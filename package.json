@@ -9,7 +9,7 @@
     "filter": "rm -rf ./tmp/*; node filter.js >> ./tmp/filter.logs 2>&1 &",
     "stress-test": "npm run clean; npm run filter; npm run bowl; head -c 10M </dev/urandom > ./tmp/new.bowl & ",
     "load-pipa-bowl": "npm run clean; head -c 1G </dev/urandom > ./tmp/local.bowl",
-    "load-mega-pipa-bowl": "npm run clean; head -c 100G </dev/urandom > ./tmp/local.bowl",
+    "load-mega-pipa-bowl": "npm run clean; head -c 100G </dev/urandom > ./tmp/new.bowl",
     "local-pipa": "node localPipa.js;"
   },
   "author": "",

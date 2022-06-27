@@ -18,7 +18,7 @@ export class BowlClient {
       var id = uuidv4()
       var id_path = './tmp/'+id
       writeFileSync(id_path, "", {flag:'a'})
-      new LocalPipa(this.bowlpath, id_path, ()=>{
+      var pipa = new LocalPipa(this.bowlpath, id_path, ()=>{
         this.stream(id_path)
       })
     }, 1000)
@@ -26,6 +26,7 @@ export class BowlClient {
   }
 
   stream(source){
+    console.log(source)
     pipeline(
       createReadStream(source),
       this.sock,
