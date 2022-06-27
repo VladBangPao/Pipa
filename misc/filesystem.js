@@ -15,19 +15,22 @@ var filename2 = './testfile2.something'
 var wstream = fs.createWriteStream(filename2, {flags:'a', start:0})
 var rstream = fs.createReadStream(filename, {flags:'r+', pos:0})
 var pstream = rstream.pipe(wstream, {end:false}, ()=>{})  
+var counter = 0;
 wstream.on('data', (src)=>{
     wstream.start+=1
     rstream.pos+=1
+    counter+=1
     //This is where i need to delete the previous char from read file
 })
 rstream.on('close', ()=>{
     //clean up read file
     fs.open(filename, 'w', (err, fd) => {
-        for (var i = 0; i<=100; i+=1){
+        for (var i = 0; i<=counter; i+=1){
             fs.write(fd, "",0, {}, ()=>{
             })
         }
         fs.close(fd)
+        counter=0
     });
 })
 
