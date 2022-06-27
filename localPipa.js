@@ -1,7 +1,12 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
+
 class LocalPipa{
 constructor(f1, f2){
-        this.f1 = this.mkdir(f1)
-        this.f2 = this.mkdir(f2)
+        this.mkdir(f1)
+        this.mkdir(f2)
+        this.f1 = f1
+        this.f2 = f2
         this.rstream = fs.createReadStream(this.f1, {flags:'r+', pos:0})
         this.wstream = fs.createWriteStream(this.f2, {flags:'a', start:0})
         this.pstream = this.rstream.pipe(this.wstream, {end:false}, ()=>{})  
@@ -29,7 +34,9 @@ constructor(f1, f2){
             fs.mkdirSync(path.dirname(f));
           }
           fs.writeFileSync(f,"", {flag:'a'})
+
     }
 }
 //This would be used to keep the user source file clean and allow us to take our time processing the data
-LocalPipa('./tmp/local.bowl', './tmp/local.filter')
+new LocalPipa('./tmp/local.bowl', './tmp/local.filter')
+//107,374,182,400 bytes

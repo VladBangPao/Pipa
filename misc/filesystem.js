@@ -1,8 +1,7 @@
 //Grab a file descriptor represented as <FileHandle>
 // using: fsPromises.open( filename, flags, mode)
 import * as fs from "node:fs";
-import { stat } from 'node:fs';
-import { truncate } from 'node:fs';
+
 //only use promises as opposed to callbacks when you know the underlying
 //function is asyncronous in its behavior and when using callbacks is not
 //too messy. Callbacks does not guarantee that behavior underneath is asyncronous
