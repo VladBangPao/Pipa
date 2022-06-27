@@ -107,6 +107,32 @@ export class BowlClient {
       console.log("grabbing a bowl", this.bowlpath)
       fs.writeFileSync(this.bowlpath, "", {flag:'a'})
   }
+
+  local_pipa(f1, f2){
+    this.f1 = f1
+    this.f2 = f2
+    var rstream = fs.createReadStream(f1, {flags:'r+', pos:0})
+    var wstream = fs.createWriteStream(f2, {flags:'a', start:0})
+    var pstream = rstream.pipe(wstream, {end:false}, ()=>{})  
+    var counter = 0;
+    wstream.on('data', (src)=>{
+        wstream.start+=1
+        rstream.pos+=1
+        counter+=1
+        //This is where i need to delete the previous char from read file
+    })
+    rstream.on('close', ()=>{
+        //clean up read file
+        fs.open(f1, 'w', (err, fd) => {
+            for (var i = 0; i<=counter; i+=1){
+                fs.write(fd, "",0, {}, ()=>{
+                })
+            }
+            fs.close(fd)
+            counter=0
+        });
+    })
+  }
 }
   
 var bowl = new BowlClient('localhost',3000, 'new.bowl')
