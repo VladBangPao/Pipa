@@ -14,7 +14,7 @@
         PipaJobs:[{/*job schema here*/},{/*job schema here*/},{/*job schema here*/}],
         config:{/*pipa configurations go here*/}
       })
-      pipa.start()
+      pipa.start(rs, ws) //read and write stream
       //For another syntax see Pipa job syntax below
       
       
@@ -54,7 +54,7 @@
       
       //OR:
       job = {
-            /*just assume you have rs and ws node streamables exposed to you here and manipulate your rstream and send it to wstream*/
+            /*just assume you have your rs and ws node streamables exposed to you here and manipulate your rstream and send it to wstream*/
       
       }
       
@@ -62,8 +62,8 @@
       pipa.push(job, initial_state)
       pipa.config({/*some high level pipa config options*/})
       
-      //You can start your pipa with:
-      pipa.start()
+      //Start your pipa with a read and write stream:
+      pipa.start(rs, ws)
 
 
 ### Pipa Configs
