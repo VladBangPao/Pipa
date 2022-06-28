@@ -34,7 +34,8 @@
                         make sure all methods on the rs are syncronous in your sub_jobs or general job
                   */
             },
-            //all sub_jobs on the job queue have a rs (readstream) and ws (writestream) exposed, so just use them in your code blocks
+            //all sub_jobs on the job queue have a rs (readstream) and ws (writestream) 
+            //exposed, so just use them in your code blocks
             jobs:[
                   {/*place your syncronous stream manipulation here*/},
                   {/*place your syncronous stream manipulation here*/},
