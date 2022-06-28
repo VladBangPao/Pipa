@@ -48,7 +48,14 @@
                   {/*place your stream manipulation here*/},
             ]
       }
-      //You can add a job by:
+      
+      //OR:
+      job = {
+            /*just assume you have rs and ws node streamables exposed to you here and manipulate your rstream and send it to wstream*/
+      
+      }
+      
+      //You can add these jobs by:
       pipa.push(job)
       pipa.config({/*some config*/})
       
