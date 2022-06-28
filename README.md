@@ -1,4 +1,4 @@
-# Pipa
+# Pipa (This is only a design, implementation coming)
 
 ### The idea for Pipa is to help you filter and analyze your stream and socket data through Pipa Jobs
 
