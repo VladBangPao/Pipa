@@ -7,7 +7,7 @@
 2. network socket and file stream filtering
 3. dynamically changing network traffic based on analysis
 
-### Event Driven Design
+### Pipa's Recursive and Event Driven Design
 ![PipaDesign](https://user-images.githubusercontent.com/107733608/176111622-688f71c7-218c-401e-be2e-b555edad2d97.jpg)
 
 ### Pipa Job Syntax
