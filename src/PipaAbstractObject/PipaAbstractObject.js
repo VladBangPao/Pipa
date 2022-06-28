@@ -7,9 +7,7 @@
 
 import { PipaPeeper } from "../PipaPeeper/PipaPeeper.js";
 export class PipaAbstractObject {
-    //This should recognize from schema
-    //what kind of object its handling and what it needs
-    //aoio is abstract object input output
+
     constructor(){
         this.peeper = PipaPeeper()
     }

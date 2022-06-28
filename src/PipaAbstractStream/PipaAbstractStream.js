@@ -1,8 +1,9 @@
-//This pipes things together
+//This implements the interface for all lower level Pipa Stream objects
 import { PipaPeeper } from "../PipaPeeper/PipaPeeper.js";
-export class PipaPiper {
+export class PipaAbstractStream {
     constructor(){
         this.peeper = PipaPeeper()
-
     }
+
+
 }
