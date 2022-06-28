@@ -17,14 +17,15 @@
       pipa = {
             state:{
                   //add to pipa's global state here
-                  foo: "baz"
+                  foo: "baz",
+                  snap: "crackle"
 
             }
             rs: rs,
             ws: ws,
             oddJob:{
                   state:{
-                        pop: "fiz"
+                        pop: "fizz"
                   },
                   jobName(){
                         //do something to this.rs
@@ -86,3 +87,16 @@
 
 ### Pipa Configs
     config:{/*pipa configurations go here*/}
+    
+### Pipa Internal State
+      State:{
+            foo: "baz",
+            snap: "crackle",
+            oddJob:{
+                  pop:"fizz"
+            },
+            anotherJob:{
+                  gee:"wizz"
+            },
+
+      }
