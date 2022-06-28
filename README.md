@@ -20,8 +20,7 @@
             }
             rs: rs,
             ws: ws,
-
-            job:{
+            oddJob:{
                   state:{
                   
                   },
@@ -52,6 +51,9 @@
 
                   }
             }
+            
+         pipa_queue:[oddJob, anotherJob, statelessJob]
+
 
      }
       
