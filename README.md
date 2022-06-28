@@ -10,10 +10,14 @@
 
 
 ### High-level Interface Design
-      {
+      var pipa = new Pipa({
         PipaJobs:[{/*job schema here*/},{/*job schema here*/},{/*job schema here*/}],
         config:{/*pipa configurations go here*/}
-      }
+      })
+      pipa.start()
+      //For another syntax see Pipa job syntax below
+      
+      
       
 ### Basic Pipa Events:
       pipa.on('job', (job, readableState)=>{
@@ -35,7 +39,21 @@
       pipa.on('error',(state)=>{})
 
 ### Pipa Job Syntax
-    coming soon
+
+      job = {
+            //all sub_jobs on the job queue have a rs (readstream) and ws (writestream) exposed, so just use them in your code blocks
+            sub_jobs:[
+                  {/*place your stream manipulation here*/},
+                  {/*place your stream manipulation here*/},
+                  {/*place your stream manipulation here*/},
+            ]
+      }
+      //You can add a job by:
+      pipa.push(job)
+      pipa.config({/*some config*/})
+      
+      //You can start your pipa with:
+      pipa.start()
 
 
 ### Pipa Configs
