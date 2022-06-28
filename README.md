@@ -1,16 +1,15 @@
-# Pipa (This is only a design, implementation coming)
+# Pipa (This is only a design, for now...)
+![pipa](https://user-images.githubusercontent.com/107733608/176111658-19ea770d-9459-483e-8147-722a85a07afb.jpg)
 
-### The idea for Pipa is to help you filter and analyze your stream and socket data through Pipa Jobs
-
-![Pipa](https://user-images.githubusercontent.com/107733608/176090657-2232998e-67d9-47bc-afdd-0328bfb43868.jpg)
 
 ### Possible use cases:
 1. nlp pipelines
 2. network socket and file stream filtering
-3. etc.
+3. changing network traffic based on analysis
 
 ### Event Driven Design
-![PipaDesign](https://user-images.githubusercontent.com/107733608/176090627-ea11de3a-524f-4c9b-85c9-3948500495d6.jpg)
+![PipaDesign](https://user-images.githubusercontent.com/107733608/176111622-688f71c7-218c-401e-be2e-b555edad2d97.jpg)
+
 ### Pipa Job Syntax
       ws = fs.createWriteStream(/*whatever*/)
       rs = fs.createReadStream(/*whatever*/)
