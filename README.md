@@ -22,6 +22,11 @@
         job.on('end', (state)=>{})
         job.on('error', (state)=>{})
       })
+      //You can put watchers on a portion of your job state to see if there are changes, and get updates
+      //For example:
+      job.watch(state.substate, (event)=>{
+            console.log(event)
+      })
 
       pipa.on('start',(state)=>{})
       pipa.on('pending',(state)=>{})
