@@ -1,5 +1,6 @@
 import { PipaPeeper } from "../../../../PipaPeeper/PipaPeeper.js";
-export class PipaIPCWriter {
+import { PipaSocketStream } from "../PipaSocketStream.js";
+export class PipaSocketWriter extends PipaSocketStream{
     constructor(){
         this.peeper = PipaPeeper()
 

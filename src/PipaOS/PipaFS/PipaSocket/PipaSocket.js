@@ -1,5 +1,6 @@
 import { PipaPeeper } from "../../../PipaPeeper/PipaPeeper.js";
-export class PipaSocketReader {
+import { PipaFS } from "../PipaFS.js";
+export class PipaSocket extends PipaFS{
     constructor(){
         this.peeper = PipaPeeper()
 
