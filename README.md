@@ -8,7 +8,7 @@
 3. dynamically changing network traffic based on analysis
 
 ### Pipa's Recursive and Event Driven Design
-![PipaDesign](https://user-images.githubusercontent.com/107733608/176111622-688f71c7-218c-401e-be2e-b555edad2d97.jpg)
+![PipaDesign](https://user-images.githubusercontent.com/107733608/176112393-5920a6d7-1d88-4287-9f46-f1c1e718ae72.jpg)
 
 ### Pipa Job Syntax
       ws = fs.createWriteStream(/*whatever*/)
