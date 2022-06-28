@@ -10,33 +10,12 @@ export class PipaAbstractObject {
     //This should recognize from schema
     //what kind of object its handling and what it needs
     //aoio is abstract object input output
-    constructor(aoio){
+    constructor(){
         this.peeper = PipaPeeper()
-        this.aoio = aoio
-        this.object = fetchObject(aoio)
     }
 
-    fetchObject(aoio){
-        if(aoio['type']=='socket'){
-            return this.socket(aoio['config'])
-        }else if(aoio['type']=='file'){
-            return this.file(aoio['config'])
-        }else if(aoio['type']=='IPC'){
-            return this.ipc(aoio['config'])
-        }else{
-            this.peeper.emit('error', new Error('Gee whizz! Schema needs a type! Try again!'))
-        }
-    }
+    
 
-    file(){
-
-    }
-    socket(){
-
-    }
-    ipc(){
-        
-    }
 
 
 }
