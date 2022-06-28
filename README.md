@@ -17,12 +17,14 @@
       pipa = {
             state:{
                   //add to pipa's global state here
+                  foo: "baz"
+
             }
             rs: rs,
             ws: ws,
             oddJob:{
                   state:{
-                  
+                        pop: "fiz"
                   },
                   jobName(){
                         //do something to this.rs
@@ -40,7 +42,9 @@
             },
             //OR:
             anotherJob: {
-                  state: {},
+                  state: {
+                        gee:"wizz"
+                  },
                   job(){
 
                   }
