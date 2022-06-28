@@ -113,3 +113,18 @@
             //which would have its own start, pending, end, and error
             //events
       })
+      
+### (Experimental) Add jobs on the fly, while watching the Pipa 
+      //pipa.get_status() helps you get the pipa state info, and where 
+      //it is in the pipeline. If you wanted to add a processing job 
+      //on the fly you could (if you are analyzing your pipa)
+      
+      while(true){
+            if(pipa.get_status()==some_status){
+                  //Add a new job to queue position
+                  pipa.addJob(2, newJob)
+            }
+      }
+      
+      //This adds a lot of flexibility to a dynamic pipeline, but 
+      //im not sure at what cost.
