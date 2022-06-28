@@ -2,7 +2,7 @@
 ![pipa](https://user-images.githubusercontent.com/107733608/176111658-19ea770d-9459-483e-8147-722a85a07afb.jpg)
 
 ## Implementation is not Strictly Necessary!
-Please go away...
+Please go away... Or appreciate Pipa's wonderful recursive design!
 
 ### Possible use cases:
 1. nlp pipelines
