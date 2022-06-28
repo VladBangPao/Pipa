@@ -44,23 +44,24 @@
                   job(){
 
                   }
-            }
+            },
             //AND:
             statelessJob: {
                   job(){
 
                   }
-            }
+            },
             
-         pipa_queue:[oddJob, anotherJob, statelessJob]
-
-
+            pipa_queue:[oddJob, anotherJob, statelessJob],
+            
+            config:{
+                  /*pipa configurations go here*/
+            }
      }
       
       
 ### Create Pipa
-      config = {/*pipa configurations go here*/}
-      var pipa = new Pipa(pipa, config)
+      var pipa = new Pipa(pipa)
       pipa.start()
       
 
