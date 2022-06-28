@@ -24,7 +24,8 @@
       })
       //You can put watchers on a portion of your job state to see if there are changes, and get updates
       //For example:
-      job.watch(state.substate, (event)=>{
+      job.watch(state.substate)
+      job.state.on('substate', (event)=>{
             console.log(event)
       })
 
