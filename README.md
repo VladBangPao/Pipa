@@ -46,9 +46,9 @@
       job = {
             //all sub_jobs on the job queue have a rs (readstream) and ws (writestream) exposed, so just use them in your code blocks
             sub_jobs:[
-                  {/*place your stream manipulation here*/},
-                  {/*place your stream manipulation here*/},
-                  {/*place your stream manipulation here*/},
+                  {/*place your syncronous stream manipulation here*/},
+                  {/*place your syncronous stream manipulation here*/},
+                  {/*place your syncronous stream manipulation here*/},
             ]
       }
       
