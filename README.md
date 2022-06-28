@@ -14,63 +14,68 @@
 ### Pipa Job Syntax
       ws = fs.createWriteStream(/*whatever*/)
       rs = fs.createReadStream(/*whatever*/)
-      oddJob = {
+      pipa = {
+            state:{
+                  //add to pipa's global state here
+            }
             rs: rs,
             ws: ws,
-            state:{
-            },
 
-            jobName(){
-                  //do something to this.rs
-                  //write it to this.ws
+            job:{
+                  state:{
+                  
+                  },
+                  jobName(){
+                        //do something to this.rs
+                        //write it to this.ws
+                  },
+                  jobName2(){
+                        //do something to this.rs
+                        //write it to this.ws
+                  },
+                  jobName3(){
+                        //do something to this.rs
+                        //write it to this.ws
+                  },
+                  job_queue:[jobName, jobName2, jobName3]
             },
-            jobName2(){
-                  //do something to this.rs
-                  //write it to this.ws
-            },
-            jobName3(){
-                  //do something to this.rs
-                  //write it to this.ws
-            },
-            job_queue:[jobName, jobName2, jobName3]
-      }
-      
-      //OR:
-      someJob = {
-            state: {},
-            job(){
-                  /*
-                        just assume you have your rs and ws node streamables 
-                        exposed to you here and manipulate your rstream and 
-                        send it to wstream
-                  */
+            //OR:
+            anotherJob: {
+                  state: {},
+                  job(){
+
+                  }
             }
-      }
+            //AND:
+            statelessJob: {
+                  job(){
 
+                  }
+            }
 
-### Create Pipa
+     }
       
-      jobs = [oddJob,someJob,anotherJob]
+      
+### Create Pipa
       config = {/*pipa configurations go here*/}
-      var pipa = new Pipa(jobs, config)
+      var pipa = new Pipa(pipa, config)
       pipa.start()
       
 
 ### Pipa Events:
-      pipa.on('job', (job, state)=>{
+      pipa.on('oddJob', (job, state)=>{
         job.on('start', (state)=>{})
         job.on('pending', (state)=>{})
         job.on('end', (state)=>{})
         job.on('error', (state)=>{})
-      })
-      pipa.on('state', (event)=>{
-            console.log(event)
+        job.on('state', (event)=>{console.log(event)})
       })
 
+      pipa.on('state',(change)=>{})
       pipa.on('start',(state)=>{})
       pipa.on('pending',(state)=>{})
       pipa.on('end',(state)=>{})
-      pipa.on('error',(state)=>{})
+      pipa.on('error',(msg)=>{})
 
 ### Pipa Configs
     config:{/*pipa configurations go here*/}
