@@ -5,7 +5,7 @@
 ### Possible use cases:
 1. nlp pipelines
 2. network socket and file stream filtering
-3. changing network traffic based on analysis
+3. dynamically changing network traffic based on analysis
 
 ### Event Driven Design
 ![PipaDesign](https://user-images.githubusercontent.com/107733608/176111622-688f71c7-218c-401e-be2e-b555edad2d97.jpg)
