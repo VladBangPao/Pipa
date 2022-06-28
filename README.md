@@ -39,6 +39,9 @@
       pipa.on('error',(state)=>{})
 
 ### Pipa Job Syntax
+      initial_state={
+            /* create state variables here and manipulate them on the inside of your job code*/
+      }
 
       job = {
             //all sub_jobs on the job queue have a rs (readstream) and ws (writestream) exposed, so just use them in your code blocks
@@ -56,8 +59,8 @@
       }
       
       //You can add these jobs by:
-      pipa.push(job)
-      pipa.config({/*some config*/})
+      pipa.push(job, initial_state)
+      pipa.config({/*some high level pipa config options*/})
       
       //You can start your pipa with:
       pipa.start()
