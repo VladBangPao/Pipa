@@ -114,6 +114,13 @@
             //events
       })
       
+### Pipa Chaining
+      //You could chain pipas
+      pipa1.pipe(pipa2).pipe(pipa3)
+      //This means pipa1=>pipa2=>pipa3, and would mean that pipa2 would
+      //consume the write stream belonging to pipa1 as its own readstream
+      //etc.
+      
 ### (Experimental) Add jobs on the fly, while watching the Pipa 
       //pipa.get_status() helps you get the pipa state info, and where 
       //it is in the pipeline. If you wanted to add a processing job 
@@ -127,4 +134,7 @@
       }
       
       //This adds a lot of flexibility to a dynamic pipeline, but 
-      //im not sure at what cost.
+      //im not sure at what cost. 
+      //You should also be able to change the write and read streams 
+      //on the fly
+      
