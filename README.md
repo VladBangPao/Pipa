@@ -71,7 +71,7 @@
       
 
 ### Pipa Events:
-      pipa.on('oddJob', (job, state)=>{
+      pipa.on('oddJob', (job)=>{
         job.on('start', (state)=>{})
         job.on('pending', (state)=>{})
         job.on('end', (state)=>{})
@@ -88,7 +88,9 @@
 ### Pipa Configs
     config:{/*pipa configurations go here*/}
     
-### Pipa Internal State
+### Pipa Internal State and Event Loop
+      //say some event fires and the call back passes you the state, 
+      //this is something similar to what you would see
       State:{
             foo: "baz",
             snap: "crackle",
@@ -98,5 +100,16 @@
             anotherJob:{
                   gee:"wizz"
             },
-
       }
+      
+      //The event loop keeps a watchful eye on state changes to help
+      //fire to the proper event api callbacks when these values change
+      //so you can log them or whatever
+      
+      //There are also native Pipa Events that fire based on what's 
+      happeing in the pipeline (start, pending, end, error). These
+      //events also fire for your jobs. When your job starts, it 
+      //would fire to pipa.on('oddJob', (job)=>{
+            //which would have its own start, pending, end, and error
+            //events
+      })
