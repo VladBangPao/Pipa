@@ -138,5 +138,6 @@
       //on the fly
       
 
-### Pipa Flow:
+### Pipa's Client Server Flow:
+![PipaFlow](https://user-images.githubusercontent.com/107733608/176120994-b0915446-d291-4eb2-a9ee-d49ea0a98d4c.jpg)
 
