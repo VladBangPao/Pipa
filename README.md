@@ -20,27 +20,6 @@
       pipa.start(rs, ws) //read and write stream
       //For another syntax see Pipa job syntax below
       
-      
-      
-### Basic Pipa Events:
-      pipa.on('job', (job, readableState)=>{
-        job.on('start', (state)=>{})
-        job.on('pending', (state)=>{})
-        job.on('end', (state)=>{})
-        job.on('error', (state)=>{})
-      })
-      //You can put watchers on a portion of your job state to see if there are changes, and get updates
-      //For example:
-      job.watch(state.substate)
-      job.state.on('substate', (event)=>{
-            console.log(event)
-      })
-
-      pipa.on('start',(state)=>{})
-      pipa.on('pending',(state)=>{})
-      pipa.on('end',(state)=>{})
-      pipa.on('error',(state)=>{})
-
 ### Pipa Job Syntax
       initial_state={
             /* create state variables here and manipulate them on the inside of your job code*/
@@ -72,6 +51,24 @@
       //Start your pipa with a read and write stream:
       pipa.start(rs, ws)
 
+### Pipa Events:
+      pipa.on('job', (job, readableState)=>{
+        job.on('start', (state)=>{})
+        job.on('pending', (state)=>{})
+        job.on('end', (state)=>{})
+        job.on('error', (state)=>{})
+      })
+      //You can put watchers on a portion of your job state to see if there are changes, and get updates
+      //For example:
+      job.watch(state.substate)
+      job.state.on('substate', (event)=>{
+            console.log(event)
+      })
+
+      pipa.on('start',(state)=>{})
+      pipa.on('pending',(state)=>{})
+      pipa.on('end',(state)=>{})
+      pipa.on('error',(state)=>{})
 
 ### Pipa Configs
     coming soon
