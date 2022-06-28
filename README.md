@@ -28,10 +28,10 @@
             state:{
                   /*    create state variables here and manipulate them on the inside of your job code
                         these are like class properties, and jobs are like the methods that use them
-                        consider them to have a this. prefix, so they are exposed to the all the subjobs 
-                        in the hidden job class the job class constructor will have a this.queue that 
-                        holds the functions and runs them in order make sure all methods on the rs are 
-                        syncronous in your sub_jobs or general job
+                        consider them to have a this. prefix, so they are exposed to the all the 
+                        subjobs in the hidden job class the job class constructor will have a 
+                        this.queue that holds the functions and runs them in order make sure all 
+                        methods on the rs are syncronous in your sub_jobs or general job
                   */
             },
             //all sub_jobs on the job queue have a rs (readstream) and ws (writestream) 
