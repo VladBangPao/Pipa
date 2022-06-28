@@ -148,3 +148,6 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 ![PipaPiper](https://user-images.githubusercontent.com/107733608/176128446-c67f0e6e-1e16-49fc-abca-ceb729a9d1fb.jpg)
 
 
+### Pipa Package Diagram:
+![PipaPackageDiagram](https://user-images.githubusercontent.com/107733608/176177350-f7f5ebc2-9f35-4c90-90e3-680ed59e5d11.jpg)
+
