@@ -4,7 +4,10 @@
 
 ![Pipa](https://user-images.githubusercontent.com/107733608/176090657-2232998e-67d9-47bc-afdd-0328bfb43868.jpg)
 
-
+### Possible use cases:
+1. nlp pipelines
+2. network socket and file stream filtering
+3. etc.
 ### Event Driven Design
 ![PipaDesign](https://user-images.githubusercontent.com/107733608/176090627-ea11de3a-524f-4c9b-85c9-3948500495d6.jpg)
 
