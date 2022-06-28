@@ -11,42 +11,34 @@
 
 ### Event Driven Design
 ![PipaDesign](https://user-images.githubusercontent.com/107733608/176090627-ea11de3a-524f-4c9b-85c9-3948500495d6.jpg)
-### Create Pipa
+### Pipa Job Syntax
       ws = fs.createWriteStream(/*whatever*/)
       rs = fs.createReadStream(/*whatever*/)
-      jobs = [{/*job schema here*/},{/*job schema here*/},{/*job schema here*/}]
-      config = {/*pipa configurations go here*/}
-      
-      
-      var pipa = new Pipa(rs, ws, jobs, config)
-
-      pipa.start(rs, ws) //read and write stream
-      //For another syntax see Pipa job syntax below
-      
-### Pipa Job Syntax
-      job = {
+      oddJob = {
+            rs: rs,
+            ws: ws,
             state:{
-                  /*    create state variables here and manipulate them on the inside of your job code
-                        these are like class properties, and jobs are like the methods that use them
-                        consider them to have a this. prefix, so they are exposed to the all the 
-                        subjobs in the hidden job class the job class constructor will have a 
-                        this.queue that holds the functions and runs them in order make sure all 
-                        methods on the rs are syncronous in your sub_jobs or general job
-                  */
             },
-            //all sub_jobs on the job queue have a rs (readstream) and ws (writestream) 
-            //exposed, so just use them in your code blocks
-            jobs:[
-                  {/*place your syncronous stream manipulation here*/},
-                  {/*place your syncronous stream manipulation here*/},
-                  {/*place your syncronous stream manipulation here*/},
-            ]
+
+            jobName(){
+                  //do something to this.rs
+                  //write it to this.ws
+            },
+            jobName2(){
+                  //do something to this.rs
+                  //write it to this.ws
+            },
+            jobName3(){
+                  //do something to this.rs
+                  //write it to this.ws
+            },
+            job_queue:[jobName, jobName2, jobName3]
       }
       
       //OR:
-      job = {
+      someJob = {
             state: {},
-            job:{
+            job(){
                   /*
                         just assume you have your rs and ws node streamables 
                         exposed to you here and manipulate your rstream and 
@@ -54,6 +46,15 @@
                   */
             }
       }
+
+
+### Create Pipa
+      
+      jobs = [oddJob,someJob,anotherJob]
+      config = {/*pipa configurations go here*/}
+      var pipa = new Pipa(jobs, config)
+      pipa.start()
+      
 
 ### Pipa Events:
       pipa.on('job', (job, state)=>{
