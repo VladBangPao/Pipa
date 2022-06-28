@@ -2,7 +2,7 @@
 //within its properties, that all of its functions can use
 //That is our event loop architechture!
 import { EventEmitter } from 'node:events';
-export class PipaEmitter extends EventEmitter {}
+export class PipaPeeper extends EventEmitter {}
 
 //USAGE
 //FOR THIS PROGRAM JUST USE THIS PARADIGM. DO NOT USE SetImmediate()
@@ -26,3 +26,20 @@ export class PipaEmitter extends EventEmitter {}
 //   console.error('whoops! there was an error');
 // });
 // myEmitter.emit('error', new Error('whoops!'));
+
+//This is to prioritize a listener for priority and performance reasons
+// server.prependListener('connection', (stream) => {
+//     console.log('someone connected!');
+//   });
+
+
+//
+//emitter.setMaxListeners(n)
+// By default EventEmitters will print a warning if more 
+// than 10 listeners are added for a particular event. 
+// This is a useful default that helps finding memory leaks. 
+// The emitter.setMaxListeners() method allows the limit to 
+// be modified for this specific EventEmitter instance. 
+// The value can be set to Infinity (or 0) to indicate an 
+// unlimited number of listeners.
+
