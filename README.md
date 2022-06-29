@@ -175,11 +175,7 @@ You get a very large number of powerful use cases with very little logic to thin
             //events
       })
          
-### (Experimental) Add jobs on the fly, while watching the Pipa 
-      //You should be able to interact with the pipa bin tree at runtime
-      //after analyzing the flow of your tree, for optimizations and security reasons.
-      //Will think about this some more...
-      
+
 
 ### Pipa's Client Server Flow:
 ![PipaJobFlow](https://user-images.githubusercontent.com/107733608/176127062-3178469f-d0a5-4b41-ad5b-1398787ef68e.jpg)
@@ -197,3 +193,7 @@ Hydra needs code that is written in an abstract way (schema like) in order to he
 Pipa is just an implementation. It's interface is actually supposed to be more powerful and long lasting than the
 code underneath it. (Much like an iPhone's interface is abstracted away from the underlying impelmentation.)
 
+### (Experimental) Add jobs on the fly, while watching the Pipa 
+You should be able to interact with the pipa bin tree at runtime after analyzing the flow of your tree, for optimizations and security reasons.
+Will think about this some more...
+      
