@@ -8,7 +8,9 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 1. nlp pipelines
 2. network socket and file stream filtering
 3. dynamically changing network traffic based on analysis
-4. etc
+4. Virtual Microservice Deployment
+5. Network Simulations
+6. etc
 
 
 ## Pipa piping can use an arbitrary graph with rules for the edges
