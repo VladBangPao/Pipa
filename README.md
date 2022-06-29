@@ -13,58 +13,55 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 ## Pipa's Recursive and Event Driven Design
 ![RecursiveDesign2](https://github.com/ItsZeusBro/Pipa/blob/51b16cb95b2ba0052ab878f22c6730adb4adbea7/Docs/PipaRecursiveDesign2.jpg)
 
+                             pipa1  
+                           /      \
+                          /        \
+                     pip12           pipa3
+                    /    \           /    \
+                              ...
+                  /        \  ...  /        \
+                              ...          pipaN   
+
 
 ### Pipa Job Syntax
       ws = fs.createWriteStream(/*whatever*/)
       rs = fs.createReadStream(/*whatever*/)
       pipa = {
             state:{
-                  //add to pipa's global state here
+                  //add to pipa's root (inherited) state here
                   foo: "baz",
                   snap: "crackle"
-
             }
+            //This is the root read stream
             rs: rs,
-            ws: ws,
-            oddJob:{
-                  state:{
-                        pop: "fizz"
-                  },
-                  jobName(){
-                        //do something to this.rs
-                        //write it to this.ws
-                  },
-                  jobName2(){
-                        //do something to this.rs
-                        //write it to this.ws
-                  },
-                  jobName3(){
-                        //do something to this.rs
-                        //write it to this.ws
-                  },
-                  job_queue:[jobName, jobName2, jobName3]
-            },
-            //OR:
-            anotherJob: {
-                  state: {
-                        gee:"wizz"
-                  },
-                  job(){
-
-                  }
-            },
-            //AND:
-            statelessJob: {
-                  job(){
-
-                  }
-            },
             
-            pipa_queue:[oddJob, anotherJob, statelessJob],
-            
-            config:{
-                  /*pipa configurations go here*/
+            pipa_bin:{
+                  //Create a pipa binary tree using javascript objects 
+                  oddJob:{
+                        state:{
+                        },
+                        left(chunk){
+                              //this is evaluated first
+                        },
+                        right(chunk){
+                              //then this
+                        },
+                        config:{}
+                        
+                  },
+                  anotherJob:{
+                        state:{
+                        },
+                        left(chunk){
+                              //this is evaluated first
+                        },
+                        right(chunk){
+                              //then this
+                        },
+                        config:{}
+                  },
             }
+           
      }
       
       
@@ -73,7 +70,7 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
       pipa.start()
       
 
-### Pipa Events:
+### Pipa Events (you can put these anywhere in Node's runtime so long as it makes sense:
       pipa.on('oddJob', (job)=>{
         job.on('start', (state)=>{})
         job.on('pending', (state)=>{})
@@ -102,7 +99,7 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
             },
             anotherJob:{
                   gee:"wizz"
-            },
+            }
       }
       
       //The event loop keeps a watchful eye on state changes to help
@@ -116,30 +113,9 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
             //which would have its own start, pending, end, and error
             //events
       })
-      
-### Pipa Chaining
-      //You could chain pipas
-      pipa1.pipe(pipa2).pipe(pipa3)
-      //This means pipa1=>pipa2=>pipa3, and would mean that pipa2 would
-      //consume the write stream belonging to pipa1 as its own readstream
-      //etc.
-      
+         
 ### (Experimental) Add jobs on the fly, while watching the Pipa 
-      //pipa.get_status() helps you get the pipa state info, and where 
-      //it is in the pipeline. If you wanted to add a processing job 
-      //on the fly you could (if you are analyzing your pipa)
-      
-      while(true){
-            if(pipa.get_status()==some_status){
-                  //Add a new job to queue position
-                  pipa.addJob(2, newJob)
-            }
-      }
-      
-      //This adds a lot of flexibility to a dynamic pipeline, but 
-      //im not sure at what cost. 
-      //You should also be able to change the write and read streams 
-      //on the fly
+      //design coming soon
       
 
 ### Pipa's Client Server Flow:
@@ -147,6 +123,7 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 
 
 ### Pipa's Piper:
+      //Sometimes the buffer gets too big for the heap and things are stored on the disk temporarily. In that case:
 ![PipaPiper](https://user-images.githubusercontent.com/107733608/176128446-c67f0e6e-1e16-49fc-abca-ceb729a9d1fb.jpg)
 
 
