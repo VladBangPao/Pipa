@@ -12,6 +12,7 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 
 
 ## Pipa piping can use an arbitrary graph with rules for the edges
+![PipaGraph](https://github.com/ItsZeusBro/Pipa/blob/ff1dc36aed84679d8a7e42c58a09a9340b8de219/Docs/PipaGraph.jpg)
 
 
 
@@ -133,9 +134,8 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 ![PipaJobFlow](https://user-images.githubusercontent.com/107733608/176127062-3178469f-d0a5-4b41-ad5b-1398787ef68e.jpg)
 
 
-### Pipa's Piper:
-      //Sometimes the buffer gets too big for the heap and things are stored on the disk temporarily. In that case:
-![PipaPiper](https://user-images.githubusercontent.com/107733608/176128446-c67f0e6e-1e16-49fc-abca-ceb729a9d1fb.jpg)
+### Pipa Piper Picked a Node of Pipa Pipers:
+![PipaPiperPickedANodeOfPipaPipers](https://github.com/ItsZeusBro/Pipa/blob/a62380b72b0a82a45ea6f820f91104a75881d9f6/Docs/PipaPiperPickedANodeOfPipaPipers.jpg)
 
 
 ### Pipa Package Diagram:
