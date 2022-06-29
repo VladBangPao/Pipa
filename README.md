@@ -42,11 +42,11 @@
 ## Pipa is an arbitrary graph of network nodes with rules for edge associations:
 <h3>Pipa can be used to create a large number of network topologies.</h3>
 
-<img align="left" height="225" width="275" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaGraphStandardized2.jpg">
+<img align="left" height="200" width="250" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaGraphStandardized2.jpg">
 
-<img align="left"  height="225" width="275" src="https://github.com/ItsZeusBro/Pipa/blob/265ab403a496f53a810a263889550e4f255c53e9/Docs/PipaTreeStandardized.jpg">
+<img align="left"  height="200" width="250" src="https://github.com/ItsZeusBro/Pipa/blob/265ab403a496f53a810a263889550e4f255c53e9/Docs/PipaTreeStandardized.jpg">
 
-<img align="left" height="225" width="275" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/RecursivePipeStandardized2.jpg">
+<img align="left" height="200" width="250" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/RecursivePipeStandardized2.jpg">
 
 <br/>
 <br/>
