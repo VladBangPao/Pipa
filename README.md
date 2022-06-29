@@ -232,14 +232,14 @@ pipa = {
   
   
 ## Pipa Piper Picked a Node of Pipa Pipers:
-<img height="500" width="700" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPiperPickedANodeOfPipaPipersStandardized2.jpg">
+<img height="600" width="850" src="https://github.com/ItsZeusBro/Pipa/blob/d77739b902fac0e7ebdee53625e9edc070d70e3c/Docs/PipaPiperPickedANodeOfPipaPipersStandardized3.jpg">
 
   <br/>
   <br/>
   <br/>
 
 ## Pipa Package Diagram:
-<img height="500" width="700" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPackageDiagramStandardized2.jpg">
+<img height="600" width="850" src="https://github.com/ItsZeusBro/Pipa/blob/d77739b902fac0e7ebdee53625e9edc070d70e3c/Docs/PipaPackageDiagramStandardized3.jpg">
 
   <br/>
   <br/>
