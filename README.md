@@ -11,7 +11,11 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 4. etc
 
 
-## Pipa's Recursive and Event Driven Design
+## Pipa piping can use an arbitrary graph with rules for the edges
+
+
+
+## Pipa can use a Recursive Binary Tree Design
 ![RecursiveDesign2](https://github.com/ItsZeusBro/Pipa/blob/51b16cb95b2ba0052ab878f22c6730adb4adbea7/Docs/PipaRecursiveDesign2.jpg)
 
                              pipa1  
@@ -24,7 +28,7 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
                               ...          pipaN   
 
 
-### Pipa Job Syntax
+### Pipa Job Tree Schema
       ws = fs.createWriteStream(/*whatever*/)
       rs = fs.createReadStream(/*whatever*/)
       pipa = {
