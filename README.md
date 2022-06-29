@@ -1,31 +1,72 @@
 # Pipa Specifications
-![pipa](https://user-images.githubusercontent.com/107733608/176111658-19ea770d-9459-483e-8147-722a85a07afb.jpg)
+
+  <br/>
+
+  ![pipa](https://user-images.githubusercontent.com/107733608/176111658-19ea770d-9459-483e-8147-722a85a07afb.jpg)
 
 ## What happens when you mix Abstract Data Structures with Abstract IO streams and simplify its interface?
-You get a very large number of powerful use cases with very little logic to think about. That's Pipa!
 
-### Everything to do with a pipe, is everything to do with data flow associations: 
-- Associations exist between app micro-services running over IPC, or network based components over Sockets
-  - Or, sometimes you want to communicate to a file and consume it from another app
-- Describing these associations in schema should enable some basic flow functionality between these nodes. 
-- If your app is pipa enabled, a subset of the pipa api should be exposed to your app based on those associations to be able to consume and process that data with logic specific to your app and user. You should not have to worry about the generic code that your app needs to communicate between components. 
-  - Pipa daemons and your schema that use them are basically doing the rest.
+  <br/>
+
+  You get a very large number of powerful use cases with very little logic to think about. That's Pipa!
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+## Everything to do with a pipe, is everything to do with data flow associations: 
+
+  <br/>
+
+  - Associations exist between app micro-services running over IPC, or network based components over Sockets
+    - Or, sometimes you want to communicate to a file and consume it from another app
+    
+  <br/>
+  
+  - Describing these associations in schema should enable some basic flow functionality between these nodes. 
+
+  <br/>
+
+  - If your app is pipa enabled, a subset of the pipa api should be exposed to your app based on those associations to be able to consume and process that data with logic specific to your app and user. 
+    - You should not have to worry about the generic code that your app needs to communicate between components. 
+    - Pipa daemons and your schema that use them are basically doing the rest.
 
 
+  <br/>
+  <br/>
+  <br/>
+  <br/>
 
-### Possible use cases:
-1. nlp pipelines
-2. network socket and file stream filtering
-3. dynamically changing network traffic based on analysis
-4. Virtual Microservice Deployment
-5. Network Simulations
-6. etc
+## Possible use cases:
+
+  <br/>
+
+  1. nlp pipelines
+  2. network socket and file stream filtering
+  3. dynamically changing network traffic based on analysis
+  4. Virtual Microservice Deployment
+  5. Network Simulations
+  6. etc
 
 
-## Pipa is an arbitrary graph of network nodes with rules for edge associations
-![PipaGraphStandardized](https://github.com/ItsZeusBro/Pipa/blob/5808783e65a05ffbadb7f34f44558f6c559f3cae/Docs/PipaGraphStandardized.jpg)
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
+## Pipa is an arbitrary graph of network nodes with rules for edge associations:
 
-### Pipa Node Schema
+![PipaGraphStandardized2](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaGraphStandardized2.jpg)
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
+## Pipa Node Schema
+
+  <br/>
+
       pipa = {
              //first node is the root node that consumes the source of data
              oddJob:{
@@ -121,8 +162,16 @@ You get a very large number of powerful use cases with very little logic to thin
                  }
            }
       }
-
+      
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
 ## Pipa can be used to create a large number of network topologies.  This example uses a Recursive Binary Tree Design
+
+  <br/>
+
 
 
                              pipa1  
@@ -135,9 +184,22 @@ You get a very large number of powerful use cases with very little logic to thin
                               ...          pipaN   
                               
                               
-![RecursivePipeStandardized1](https://github.com/ItsZeusBro/Pipa/blob/6691cac8a77d319929ed1fa92e4ac6314e62942f/Docs/RecursivePipeStandardized1.jpg)
+  <br/>
+  <br/>
 
-### Pipa Events (you can put these anywhere in Node's runtime so long as it makes sense:
+
+![RecursivePipeStandardized2](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/RecursivePipeStandardized2.jpg)
+
+ 
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
+  
+## Pipa Events (you can put these anywhere in Node's runtime so long as it makes sense:
+
+  <br/>
       pipa.on('oddJob', (job)=>{
         job.on('start', (state)=>{})
         job.on('pending', (state)=>{})
@@ -151,9 +213,18 @@ You get a very large number of powerful use cases with very little logic to thin
       pipa.on('pending',(state)=>{})
       pipa.on('end',(state)=>{})
       pipa.on('error',(msg)=>{})
+      
+      
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
+  
+## Pipa Internal State and Event Loop
 
-    
-### Pipa Internal State and Event Loop
+  <br/>
+
       //say some event fires and the call back passes you the state
       //for the node of your tree.
       //this is something similar to what you would see:
@@ -176,21 +247,58 @@ You get a very large number of powerful use cases with very little logic to thin
             //which would have its own start, pending, end, and error
             //events
       })
-         
+      
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
+  
+## Pipa Piper Picked a Node of Pipa Pipers:
 
-### Pipa Piper Picked a Node of Pipa Pipers:
-![PipaPiperPickedANodeOfPipaPipers](https://github.com/ItsZeusBro/Pipa/blob/75b45affce15de0ae0ac0b0ecc6c283360b468e7/Docs/PipaPiperPickedANodeOfPipaPipersStandardized.jpg)
+  <br/>
+  
+![PipaPiperPickedANodeOfPipaPipers](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPiperPickedANodeOfPipaPipersStandardized2.jpg)
 
+  <br/>
+  <br/>
+  <br/>
+  <br/>
 
-### Pipa Package Diagram:
-![PipaPackageDiagramStandardized](https://github.com/ItsZeusBro/Pipa/blob/75b45affce15de0ae0ac0b0ecc6c283360b468e7/Docs/PipaPackageDiagramStandardized.jpg)
+## Pipa Package Diagram:
 
-### Pipa is the first implementation of an app that can expose an Abstract Syntax to Hydra. 
+  <br/>
+  
+![PipaPackageDiagramStandardized](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPackageDiagramStandardized2.jpg)
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
+## Pipa is the first implementation of an app that can expose an Abstract Syntax to Hydra.
+
+  <br/>
+  
 Hydra needs code that is written in an abstract way (schema like) in order to help architects do more with less.
 Pipa is just an implementation. It's interface is actually supposed to be more powerful and long lasting than the
 code underneath it. (Much like an iPhone's interface is abstracted away from the underlying impelmentation.)
 
-### (Experimental) Add jobs on the fly, while watching the Pipa 
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  
+  
+## (Experimental) Add jobs on the fly, while watching the Pipa 
+
+  <br/>
+
 You should be able to interact with the pipa bin tree at runtime after analyzing the flow of your tree, for optimizations and security reasons.
 Will think about this some more...
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
       
