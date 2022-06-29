@@ -1,23 +1,13 @@
 # Pipa Specifications
-
-  <br/>
-
-  ![pipa](https://user-images.githubusercontent.com/107733608/176111658-19ea770d-9459-483e-8147-722a85a07afb.jpg)
+  <img align="right" width="300" height="300" src="https://user-images.githubusercontent.com/107733608/176111658-19ea770d-9459-483e-8147-722a85a07afb.jpg">
 
 ## What happens when you mix Abstract Data Structures with Abstract IO streams and simplify its interface?
-
-  <br/>
-
   You get a very large number of powerful use cases with very little logic to think about. That's Pipa!
-  <br/>
   <br/>
   <br/>
   <br/>
 
 ## Everything to do with a pipe, is everything to do with data flow associations: 
-
-  <br/>
-
   - Associations exist between app micro-services running over IPC, or network based components over Sockets
     - Or, sometimes you want to communicate to a file and consume it from another app
     
@@ -35,12 +25,8 @@
   <br/>
   <br/>
   <br/>
-  <br/>
 
 ## Possible use cases:
-
-  <br/>
-
   1. nlp pipelines
   2. network socket and file stream filtering
   3. dynamically changing network traffic based on analysis
@@ -52,154 +38,150 @@
   <br/>
   <br/>
   <br/>
-  <br/>
   
 ## Pipa is an arbitrary graph of network nodes with rules for edge associations:
+<h3>Pipa can be used to create a large number of network topologies.</h3>
 
-![PipaGraphStandardized2](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaGraphStandardized2.jpg)
+<img align="left" height="225" width="300" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaGraphStandardized2.jpg">
 
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  
-## Pipa Node Schema
+<img align="left"  height="225" width="300" src="https://github.com/ItsZeusBro/Pipa/blob/265ab403a496f53a810a263889550e4f255c53e9/Docs/PipaTreeStandardized.jpg">
 
-  <br/>
+<img align="left" height="225" width="300" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/RecursivePipeStandardized2.jpg">
 
-      pipa = {
-             //first node is the root node that consumes the source of data
-             oddJob:{
-                  //This is how other nodes on the network are able to communicate with this node
-                  id:"some Unique Id or Hash here",
-                  
-                  config{
-                    //This tells pipa daemon how the root node is configured
-                  },
-                  
-                  state:{
-                    foo: "bar",
-                    biz: "bazz",
-                    pop: "fizz",
-                    im: "bad"
-                  },
-                  
-                  associations:[
-                    {
-                      anotherJob:"bidirectional"
-                    },
-                    {
-                      oddJob:"noMoreJobs"
-                    }
-                 ],
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-                 rules(){
-                    //some rules that constrain the flow
-                 },
-                 
-                 filter(){
-                    //all filters get run before the rules(), because rules determine flow.
-                    //filters are generic in nature for the node in question (for now)
-                 },
+<pre>
+<code>  
+pipa = {
+       //first node is the root node that consumes the source of 
+       //data
+       oddJob:{
+            //This is how other nodes on the network are able to 
+            //communicate with this node
+            id:"some Unique Id or Hash here",
 
-             },
-             anotherJob:{
-                  //This is how other nodes on the network are able to communicate with this node
-                  id:"some Unique Id or Hash here",
-                  
-                  config{
-                    //This tells pipa how your root node can access "anotherJob" which should have a pipa daemon running
-                  },
-                  
-                  state:{
-                    do: "more",
-                    hard: "core",
-                    gee: "wizz",
-                    im: "glad"
-                  },
-                  
-                  associations:[
-                    {
-                      anotherJob:"noMoreJobs"
-                    }
-                 ],
+            //This tells pipa daemon how the root node is 
+            //configured
+            config{
+            },
 
-                 rules(){
-                    //some rules that constrain the flow
-                 },
+            //State variables accessable by your node rules
+            state:{
+              foo: "bar",
+              biz: "bazz",
+              pop: "fizz",
+              im: "bad"
+            },
 
-                 filters:[
-                   {
-                      //all filters get run before any rules(), because rules determine flow.
-                      //filters are generic in nature for the node in question (for now)
-                   }
-                 ]
-             },
-             noMoreJobs:{
-                  //This is how other nodes on the network are able to communicate with this node
-                  id:"some Unique Id or Hash here",
-                  
-                  config{
-                    //This tells pipa how your root node can access "anotherJob" which should have a pipa daemon running
-                  },
-                  
-                 //this doesn't have associations that are outbound from itself
-                 //it doesn't need rules, as it is a terminal in the graph
-                 state:{
-                      live:"life",
-                      pipa:"pipe",
-                      puff:"puff",
-                      high:"kite",
-                      pass:"psyche"
-                 },
+            //Edge Associations between Pipa Nodes
+            associations:[
+              {
+                anotherJob:"bidirectional"
+              },
+              {
+                oddJob:"noMoreJobs"
+              }
+           ],
 
-                 filter(){
-                    //This filter is the last one before writing to the terminating writestream
-                 },
-                 
-                 config{
-                    //This tells pipa how to spin up a network enabled container, or IPC between nodes used by your app, etc
-                 }
+
+           //some flow rules that constrain the flow
+           flow(){
+           },
+
+
+           //all filters get run before the flow() rules, 
+           //Filters are generic in nature for the node 
+           //in question (for now)
+           filter(){
+
+           },
+
+       },
+       anotherJob:{
+            id:"some Unique Id or Hash here",
+
+            //This tells pipa how your nodes can access 
+            //"anotherJob" through pipa daemons
+            config{
+            },
+
+            state:{
+              do: "more",
+              hard: "core",
+              gee: "wizz",
+              im: "glad"
+            },
+
+            associations:[
+              {
+                anotherJob:"noMoreJobs"
+              }
+           ],
+
+           flow(){
+           },
+
+           //Alternate syntax for multiple filters
+           filters:[
+             {
+
+             }
+           ]
+       },
+       noMoreJobs:{
+            //This is how other nodes on the network 
+            //are able to communicate with this node
+            id:"some Unique Id or Hash here",
+
+            config{
+            },
+
+           //this doesn't have associations that are outbound 
+           //from itself so it does NOT need flow rules, 
+           //as it is a terminal in the graph (or a leaf in a
+           //tree)
+           state:{
+                live:"life",
+                pipa:"pipe",
+                puff:"puff",
+                high:"kite",
+                pass:"psyche"
+           },
+
+           filter(){
+              //This filter is the last one before writing to 
+              //the terminating writestream
+           },
+
+           config{
            }
-      }
-      
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  
-## Pipa can be used to create a large number of network topologies.  This example uses a Recursive Binary Tree Design
+     }
+}
+</code>
+</pre>
 
-  <br/>
-
-
-
-                             pipa1  
-                           /      \
-                          /        \
-                     pipa2           pipa3
-                    /    \           /    \
-                              ...
-                  /        \  ...  /        \
-                              ...          pipaN   
-                              
-                              
   <br/>
   <br/>
 
 
-![RecursivePipeStandardized2](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/RecursivePipeStandardized2.jpg)
 
  
-  <br/>
   <br/>
   <br/>
   <br/>
   
   
 ## Pipa Events (you can put these anywhere in Node's runtime so long as it makes sense:
-
-  <br/>
       pipa.on('oddJob', (job)=>{
         job.on('start', (state)=>{})
         job.on('pending', (state)=>{})
@@ -218,13 +200,9 @@
   <br/>
   <br/>
   <br/>
-  <br/>
   
   
 ## Pipa Internal State and Event Loop
-
-  <br/>
-
       //say some event fires and the call back passes you the state
       //for the node of your tree.
       //this is something similar to what you would see:
@@ -251,40 +229,28 @@
   <br/>
   <br/>
   <br/>
-  <br/>
   
   
 ## Pipa Piper Picked a Node of Pipa Pipers:
+<img height="500" width="700" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPiperPickedANodeOfPipaPipersStandardized2.jpg">
 
-  <br/>
-  
-![PipaPiperPickedANodeOfPipaPipers](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPiperPickedANodeOfPipaPipersStandardized2.jpg)
-
-  <br/>
   <br/>
   <br/>
   <br/>
 
 ## Pipa Package Diagram:
+<img height="500" width="700" src="https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPackageDiagramStandardized2.jpg">
 
-  <br/>
-  
-![PipaPackageDiagramStandardized](https://github.com/ItsZeusBro/Pipa/blob/6935b99db13949320a4b6b0747a8b10068bf9f0b/Docs/PipaPackageDiagramStandardized2.jpg)
-
-  <br/>
   <br/>
   <br/>
   <br/>
   
 ## Pipa is the first implementation of an app that can expose an Abstract Syntax to Hydra.
+- Hydra needs code that is written in an abstract way (schema like) in order to help architects do more with less.
+  - Pipa is just an implementation. It's interface is actually supposed to be more powerful and long lasting than the
+code underneath it. 
+    - (Much like an iPhone's interface is abstracted away from the underlying impelmentation.)
 
-  <br/>
-  
-Hydra needs code that is written in an abstract way (schema like) in order to help architects do more with less.
-Pipa is just an implementation. It's interface is actually supposed to be more powerful and long lasting than the
-code underneath it. (Much like an iPhone's interface is abstracted away from the underlying impelmentation.)
-
-  <br/>
   <br/>
   <br/>
   <br/>
