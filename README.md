@@ -16,7 +16,7 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
                              pipa1  
                            /      \
                           /        \
-                     pip12           pipa3
+                     pipa2           pipa3
                     /    \           /    \
                               ...
                   /        \  ...  /        \
