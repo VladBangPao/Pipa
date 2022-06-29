@@ -9,8 +9,10 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 2. network socket and file stream filtering
 3. dynamically changing network traffic based on analysis
 
-### Pipa's Recursive and Event Driven Design
-![PipaDesign](https://user-images.githubusercontent.com/107733608/176112393-5920a6d7-1d88-4287-9f46-f1c1e718ae72.jpg)
+
+## Pipa's Recursive and Event Driven Design
+![RecursiveDesign2](https://github.com/ItsZeusBro/Pipa/blob/51b16cb95b2ba0052ab878f22c6730adb4adbea7/Docs/PipaRecursiveDesign2.jpg)
+
 
 ### Pipa Job Syntax
       ws = fs.createWriteStream(/*whatever*/)
@@ -150,4 +152,4 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 
 ### Pipa Package Diagram:
 
-![PipaPackageDiagram2](https://raw.githubusercontent.com/ItsZeusBro/Pipa/wireframing/Docs/PipaPackageDiagram2.jpg)
+![PackageDiagram2](https://github.com/ItsZeusBro/Pipa/blob/51b16cb95b2ba0052ab878f22c6730adb4adbea7/Docs/PipaPackageDiagram2.jpg)
