@@ -12,7 +12,7 @@ class PipaGraph extends PipaObject{
         
     }
     //adding to an abstract graph is simple, but not as useful as a specific type
-    //this should only be used for arbitrary clustering
+    //this should only be used for creating abstract networks and network simulations
     add(){
 
     }
