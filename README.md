@@ -95,17 +95,15 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
     config:{/*pipa configurations go here*/}
     
 ### Pipa Internal State and Event Loop
-      //say some event fires and the call back passes you the state, 
-      //this is something similar to what you would see
+      //say some event fires and the call back passes you the state
+      //for the node of your tree.
+      //this is something similar to what you would see:
       State:{
+            height:2,
+            depth:1,
+            width:0,
             foo: "baz",
-            snap: "crackle",
-            oddJob:{
-                  pop:"fizz"
-            },
-            anotherJob:{
-                  gee:"wizz"
-            }
+            snap: "crackle"
       }
       
       //The event loop keeps a watchful eye on state changes to help
