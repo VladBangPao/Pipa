@@ -182,11 +182,11 @@ You get a very large number of powerful use cases with very little logic to thin
 
 
 ### Pipa Piper Picked a Node of Pipa Pipers:
-![PipaPiperPickedANodeOfPipaPipers](https://github.com/ItsZeusBro/Pipa/blob/a62380b72b0a82a45ea6f820f91104a75881d9f6/Docs/PipaPiperPickedANodeOfPipaPipers.jpg)
+![PipaPiperPickedANodeOfPipaPipers](https://github.com/ItsZeusBro/Pipa/blob/75b45affce15de0ae0ac0b0ecc6c283360b468e7/Docs/PipaPiperPickedANodeOfPipaPipersStandardized.jpg)
 
 
 ### Pipa Package Diagram:
-![PipaPackageDiagram](https://github.com/ItsZeusBro/Pipa/blob/1a95298cd1a34688fafa6a4c26562f5520bbc10c/Docs/PipaPackageDiagram3.jpg)
+![PipaPackageDiagramStandardized](https://github.com/ItsZeusBro/Pipa/blob/75b45affce15de0ae0ac0b0ecc6c283360b468e7/Docs/PipaPackageDiagramStandardized.jpg)
 
 ### Pipa is the first implementation of an app that can expose an Abstract Syntax to Hydra. 
 Hydra needs code that is written in an abstract way (schema like) in order to help architects do more with less.
