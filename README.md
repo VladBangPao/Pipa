@@ -139,5 +139,4 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
 
 
 ### Pipa Package Diagram:
-
-![PackageDiagram2](https://github.com/ItsZeusBro/Pipa/blob/51b16cb95b2ba0052ab878f22c6730adb4adbea7/Docs/PipaPackageDiagram2.jpg)
+![PipaPackageDiagram](https://github.com/ItsZeusBro/Pipa/blob/1a95298cd1a34688fafa6a4c26562f5520bbc10c/Docs/PipaPackageDiagram3.jpg)
