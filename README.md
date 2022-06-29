@@ -121,7 +121,9 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
       })
          
 ### (Experimental) Add jobs on the fly, while watching the Pipa 
-      //design coming soon
+      //You should be able to interact with the pipa bin tree at runtime
+      //after analyzing the flow of your tree, for optimizations and security reasons.
+      //Will think about this some more...
       
 
 ### Pipa's Client Server Flow:
