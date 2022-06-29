@@ -23,8 +23,7 @@ You get a very large number of powerful use cases with very little logic to thin
 
 
 ## Pipa is an arbitrary graph of network nodes with rules for edge associations
-![PipaGraph](https://github.com/ItsZeusBro/Pipa/blob/ff1dc36aed84679d8a7e42c58a09a9340b8de219/Docs/PipaGraph.jpg)
-
+![PipaGraphStandardized](https://github.com/ItsZeusBro/Pipa/blob/5808783e65a05ffbadb7f34f44558f6c559f3cae/Docs/PipaGraphStandardized.jpg)
 
 ### Pipa Node Schema
       pipa = {
@@ -124,7 +123,7 @@ You get a very large number of powerful use cases with very little logic to thin
       }
 
 ## Pipa can be used to create a large number of network topologies.  This example uses a Recursive Binary Tree Design
-![RecursiveDesign2](https://github.com/ItsZeusBro/Pipa/blob/51b16cb95b2ba0052ab878f22c6730adb4adbea7/Docs/PipaRecursiveDesign2.jpg)
+
 
                              pipa1  
                            /      \
@@ -134,6 +133,9 @@ You get a very large number of powerful use cases with very little logic to thin
                               ...
                   /        \  ...  /        \
                               ...          pipaN   
+                              
+                              
+![RecursivePipeStandardized1](https://github.com/ItsZeusBro/Pipa/blob/6691cac8a77d319929ed1fa92e4ac6314e62942f/Docs/RecursivePipeStandardized1.jpg)
 
 ### Pipa Events (you can put these anywhere in Node's runtime so long as it makes sense:
       pipa.on('oddJob', (job)=>{
@@ -175,11 +177,6 @@ You get a very large number of powerful use cases with very little logic to thin
             //events
       })
          
-
-
-### Pipa's Client Server Flow:
-![PipaJobFlow](https://user-images.githubusercontent.com/107733608/176127062-3178469f-d0a5-4b41-ad5b-1398787ef68e.jpg)
-
 
 ### Pipa Piper Picked a Node of Pipa Pipers:
 ![PipaPiperPickedANodeOfPipaPipers](https://github.com/ItsZeusBro/Pipa/blob/75b45affce15de0ae0ac0b0ecc6c283360b468e7/Docs/PipaPiperPickedANodeOfPipaPipersStandardized.jpg)
