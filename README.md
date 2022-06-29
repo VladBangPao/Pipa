@@ -1,8 +1,9 @@
 # Pipa Specifications
 ![pipa](https://user-images.githubusercontent.com/107733608/176111658-19ea770d-9459-483e-8147-722a85a07afb.jpg)
 
-## Implementation is not Strictly Necessary!
-Please go away... Or appreciate Pipa's wonderful recursive design!
+## What happens when you mix Abstract Data Structures with Abstract IO streams and simplify its interface?
+You get a very large number of powerful use cases with very little logic to think about. That's Pipa!
+
 
 ### Possible use cases:
 1. nlp pipelines
