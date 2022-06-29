@@ -46,7 +46,10 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
                         right(chunk){
                               //then this
                         },
-                        config:{}
+                        config:{},
+                        pipa_bin:{
+                          //next level
+                        }
                         
                   },
                   anotherJob:{
@@ -58,7 +61,10 @@ Please go away... Or appreciate Pipa's wonderful recursive design!
                         right(chunk){
                               //then this
                         },
-                        config:{}
+                        config:{},
+                        pipa_bin:{
+                          //next level
+                        }
                   },
             }
            
