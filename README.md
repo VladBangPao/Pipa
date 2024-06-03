@@ -245,7 +245,7 @@ pipa = {
   <br/>
   <br/>
   
-## Pipa is the first implementation of an app that can expose an Abstract Syntax to Hydra.
+## Pipa is the first concept of an app that can expose an Abstract Syntax to Hydra.
 - Hydra needs code that is written in an abstract way (schema like) in order to help architects do more with less.
   - Pipa is just an implementation. It's interface is actually supposed to be more powerful and long lasting than the
 code underneath it. 
